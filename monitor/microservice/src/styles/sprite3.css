@@ -1,0 +1,28 @@
+.sprite3 {
+	/*background-image: url(../imgs/ver3_1x_min.png);*/
+}
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+	.sprite3 {
+		/*background-image: url(../imgs/ver3_2x_min.png);
+		background-size: 30px 90px;*/
+	}
+}
+
+.sprite-icon-comment {
+	width: 30px;
+	height: 30px;
+	/*background-position: 0 0;*/
+}
+
+.sprite-icon-fb-emotion-like-60 {
+	width: 30px;
+	height: 30px;
+	/*background-position: 0 -30px;*/
+}
+
+.sprite-icon-forward {
+	width: 30px;
+	height: 30px;
+	/*background-position: 0 -60px;*/
+}

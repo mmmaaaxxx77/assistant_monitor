@@ -1,0 +1,218 @@
+.fanpost {
+  min-height: 400px;
+  position: relative;
+}
+
+.fanpost .tableHeaderColumn {
+    white-space: normal !important;
+    word-break: break-all !important;
+}
+
+.fanpost .tableHeaderColumn .fangroup_profile{
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.fanpost .overlapFansTable .tableHeaderColumn {
+  padding: 10px 0 10px 15px !important;
+}
+
+.fanpost .recharts-legend-item-text {
+  color:#fff !important;
+}
+
+.fanpost.light .recharts-legend-item-text {
+  color:#333333 !important;
+}
+
+.tabSwitchWrap .rankingbarWrap {
+  margin: 0 auto 40px;
+}
+
+.tabSwitchWrap  .fansTable {
+  margin: 0 40px 40px;
+}
+
+.fansTable .fansPostTableRow {
+  border-bottom: 1px solid #cdcdcd!important;
+}
+
+.fansTable .rankNum,
+.fansTable .tableCell {
+  padding: 20px 0 20px 20px !important;
+  vertical-align: middle !important;
+  font-size: 16px !important;
+  color: #666 !important;
+}
+
+.fansTable .tableCell.totalNum {
+  border-left: 1px solid #ebebeb;
+  background-color: #ebebeb !important;
+  color: #23a1ff !important;
+  font-size: 30px !important;
+}
+
+.fansTable .tableCell i {
+  margin-right: 12px;
+}
+
+.fansTable .tableCell .sprite-icon-comment{
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+  vertical-align: text-bottom;
+}
+
+button[type="button"]:hover, button[type="button"]:focus {
+    z-index: 10 !important;
+}
+.overlapFansTable.light>div>div>table thead{
+  background: #ffffff !important;
+}
+
+.overlapFansTable.light>div>div table{
+  background: #fff !important;
+}
+
+.fanGroupTableCell {
+  padding: 20px 0 20px 15px !important;
+  vertical-align: middle !important;
+  font-size: 16px !important;
+  color: #666 !important;
+}
+
+.fanGroupTableCell img {
+  margin-right: 15px;
+  width: 65px;
+  height: 65px;
+}
+
+.fanGroupTableCell .fanGroupTableLink {
+  display: inline-block;
+}
+
+.fanGroupTableCell .fanGroupTableLink span {
+  display: inline-block;
+  width: 100px;
+  white-space: normal;
+  vertical-align: middle;
+  color: #666;
+}
+
+/*.fansTable {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.filterBtn {
+  flex:1 100%;
+}
+
+.rankingTable {
+  flex:1;
+}
+
+.fanpost.light .tabscustom {
+  background-color: #EAE8E3 !important;
+}
+
+.fanpost.light .fanpost_btn button{
+  background-color: #EAE8E3 !important;
+}
+
+.fanpost.light button span {
+  color: #333333 !important;
+}
+
+.fansTable>div>div>div table{
+	background: #000 !important;
+}
+
+.fansTable.light >div>div>div table{
+	background: #fff !important;
+	border:3px solid #ccc;
+}
+
+.fansTable.light >div>div>div>table thead{
+	background: #fcdede !important;
+}
+
+.fansTable>div>div>div>table>tbody tr{
+	color:#fff !important;
+}
+
+.fansTable>div>div>div>table>tbody a{
+  color:#fff !important;
+}
+
+.fansTable.light >div>div>div>table>tbody tr{
+	color:#333333 !important;
+}
+
+.fansTable.light >div>div>div>table>tbody a{
+  color:#333333 !important;
+}
+
+.fansPostTableRow td{
+  vertical-align: middle;
+  padding: 15px 0px 15px 25px !important;
+}
+
+.fanpost h2.title {
+  font-size: 18px;
+  font-weight: 700;
+  background:#082326;
+  margin:0; 
+  padding:5px;
+  padding-left:15px;
+  color:#BFE4D4;
+  line-height: 25px;
+}
+
+.fanpost.light h2.title {
+  background:#fcdede;
+  color:#333333;
+}
+
+.fanpost .HorizontalRankingBar{
+   background: #181A19;
+   border:10px solid #000;
+   margin: 20px 0 0 0;
+}
+
+.fanpost.light .HorizontalRankingBar{
+   background: #fff;
+   border:2px solid #EAE8E3;
+}
+
+
+
+.fanpost.light .tabscustom > div button{
+  color: #333333 !important;
+}
+
+.overlapFansTable {
+  flex:2;
+}
+
+.overlapFansTable>div>div table{
+  background: #000 !important;
+}
+
+
+
+
+
+.overlapFansTable>div>div>table>tbody tr{
+  color:#fff !important;
+}
+
+.overlapFansTable.light>div>div>table>tbody tr{
+  color:#333333 !important;
+
+}
+
+}*/
+
+

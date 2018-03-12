@@ -1,0 +1,148 @@
+.sprite2 {
+  background-image: url(../imgs/ver2_1x_min.png);
+}
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+  .sprite2 {
+    background-image: url(../imgs/ver2_2x_min.png);
+    background-size: 60px 579px;
+  }
+}
+
+.sprite-icon-wave-white {
+  width: 60px;
+  height: 15px;
+  background-position: 0 0;
+}
+
+.sprite-icon010-active {
+  width: 25px;
+  height: 25px;
+  background-position: 0 -15px;
+}
+
+.sprite-icon010-c {
+  width: 25px;
+  height: 25px;
+  background-position: 0 -40px;
+}
+
+.sprite-icon010-inactive {
+  width: 25px;
+  height: 25px;
+  background-position: 0 -65px;
+}
+
+.sprite-corner {
+  width: 24px;
+  height: 24px;
+  background-position: 0 -90px;
+}
+
+.sprite-icon-arrowstaylevel {
+  width: 15px;
+  height: 15px;
+  background-position: 0 -114px;
+}
+
+.sprite-icon-angry {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -129px;
+}
+
+.sprite-icon-haha {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -174px;
+}
+
+.sprite-icon-like {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -219px;
+}
+
+.sprite-icon-love {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -264px;
+}
+
+.sprite-icon-sad {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -309px;
+}
+
+.sprite-icon-wow {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -354px;
+}
+
+.sprite-icon-event {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -399px;
+}
+
+.sprite-icon-link {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -444px;
+}
+
+.sprite-icon-photo {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -489px;
+}
+
+.sprite-icon-video {
+  width: 45px;
+  height: 45px;
+  background-position: 0 -534px;
+}
+
+
+
+.reaction {
+  background-image: url(../imgs/fb_reactions.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: 156px 26px;
+  vertical-align: middle;
+  margin: -4px 5px 0 0;
+}
+.reaction.reaction-like {
+  background-position: -1px -1px;
+  width: 24px;
+  height: 24px;
+}
+.reaction.reaction-love {
+  background-position: -27px -1px;
+  width: 24px;
+  height: 24px;
+}
+.reaction.reaction-haha {
+  background-position: -53px -1px;
+  width: 24px;
+  height: 24px;
+}
+.reaction.reaction-wow {
+  background-position: -79px -1px;
+  width: 24px;
+  height: 24px;
+}
+.reaction.reaction-sad {
+  background-position: -105px -1px;
+  width: 24px;
+  height: 24px;
+}
+.reaction.reaction-angry {
+  background-position: -131px -1px;
+  width: 24px;
+  height: 24px;
+}
+/*Large Size*/

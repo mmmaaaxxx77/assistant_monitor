@@ -1,0 +1,247 @@
+.manage_profile hr{
+  bottom: 0px !important;
+}
+
+.manage_profile input{
+  color:#fff !important;
+}
+
+.manage_profile.light input{
+  /*color:#333333 !important;*/
+}
+
+.manage_profile .inputHint {
+  margin: 0 15px 40px;
+  font-size: 24px;
+  color:#fff;
+}
+
+.inputWrapper {
+  margin: 0 15px 70px;
+  position: relative;
+}
+
+.inputWrapper .openSidebarBtn {
+  position: absolute;
+  z-index: 1;
+  right: 60px;
+  top: 12px;
+  height: 50px;
+  padding:0 40px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 25px;
+  transition: all 0.3s;
+  cursor: no-drop;
+}
+
+.inputWrapper .openSidebarBtn.grayBkg {
+  background-color: #e7e7e7;
+}
+
+.inputWrapper .openSidebarBtn.yellowBkg {
+  background-color: #ffe828;
+  cursor: pointer;
+}
+
+.inputWrapper .fbHelpIconWrapper {
+  z-index: 1;
+  position: absolute;
+  top: 17px;
+  right:0;
+  background-image: url(../imgs/icon_help_inactive.png);
+  background-size: contain;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
+.inputWrapper .fbHelpIconWrapper.active {
+  background-image: url(../imgs/icon_help.png);
+}
+
+.inputWrapper .tooltiptext {
+  position: absolute;
+  top: 1px;
+  left: 55px;
+  visibility: hidden;
+  opacity: 0;
+  width: 130px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 6px;
+  background-color: #444;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  transition: opacity 0.5s;
+}
+.inputWrapper .tooltiptext:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+.inputWrapper .fbHelpIconWrapper:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile_container > div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.manage_profile .paper {
+  display: inline-block !important;
+  width: 33.33% !important;
+  /*flex-grow: 1;*/
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.cardInfo {
+  position: relative;
+  margin: 0 15px;
+  padding: 25px 0 30px;
+  box-shadow: 0 0 6px #ababab;
+  border: 3px solid #ebebed;
+  background:#000;
+}
+
+.manage_profile.light .cardInfo {
+  background: -moz-linear-gradient(top, #e5e5e5 0%, #ffffff 55%);
+  background: -webkit-linear-gradient(top, #e5e5e5 0%,#ffffff 55%);
+  background: linear-gradient(to bottom, #e5e5e5 0%,#ffffff 55%);
+}
+
+.cardInfo .sprite-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.cardInfo .infoTopWrap {
+  margin-bottom: 25px;
+  font-size: 18px;
+  font-family: "Noto Sans TC","WenQuanYi Zen Hei","Heiti TC",Helvetica,"Microsoft YaHei","Microsoft JhengHei",Arial,sans-serif !important;
+}
+
+.cardInfo .infoBotWrap {
+  font-size: 0;
+}
+
+.cardInfo .infoBotWrap img,
+.cardInfo .infoBotWrap .likeNumBox {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.cardInfo .infoBotWrap img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 3px 4px #666;
+  border: 4px solid #fff;
+}
+
+.cardInfo .infoBotWrap .likeNumBox {
+  position: relative;
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+.cardInfo .infoBotWrap .likeTitle {
+  margin: 10px 0;
+  font-family: "Noto Sans TC","WenQuanYi Zen Hei","Heiti TC",Helvetica,"Microsoft YaHei","Microsoft JhengHei",Arial,sans-serif !important;
+}
+
+.cardInfo .infoBotWrap .likeNum {
+  width: 185px;
+  overflow: hidden;
+  border-bottom: 1px solid #2ca1ff;
+  font-weight: lighter;
+  font-size: 36px;
+  color: #23a1ff;
+}
+
+.cardInfo .infoBotWrap .likeGroth {
+  margin-top: 20px;
+}
+
+.cardInfo .infoBotWrap .sprite-icon-arrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin: -3px 0 0 5px;
+}
+
+.cardInfo .infoBotWrap .growthRate {
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+  font-size: 24px;
+}
+
+.cardInfo .infoBotWrap .growthRate .sprite1,
+.cardInfo .infoBotWrap .growthRate .sprite2 {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.cardInfo .infoBotWrap .growthRate.up {
+  color: #ef7d65;
+}
+
+.cardInfo .infoBotWrap .growthRate.flat {
+  color: #23a1ff;
+}
+
+.cardInfo .infoBotWrap .growthRate.down {
+  color: #23b9a9;
+}
+
+.manage_profile .card{
+  margin: 0 15px !important;
+  padding: 25px 0 !important;
+  box-shadow: 0 3px 4px #666 !important;
+  border: 3px solid #ebebed !important;
+  background:#000 !important;
+  color: #fff !important;
+}
+
+.manage_profile.light .card{
+  background:#fff !important;
+}
+
+.manage_profile .card > div{
+  padding: 0 !important;
+}
+
+.chipinput {
+  margin-top: 0px !important;
+  min-height: 85px;
+  line-height: 85px !important;
+}
+
+.chipinput div div div[tabindex] {
+  padding: 10px 10px 10px 15px !important;
+  border-radius: 25px !important;
+  background: #dbf0ff !important;
+  margin: 12px 10px 20px 0 !important;
+}
+
+.chipinput div div div[tabindex] span {
+  color: #3c3940 !important;
+  font-family: "Noto Sans TC","WenQuanYi Zen Hei","Heiti TC",Helvetica,"Microsoft YaHei","Microsoft JhengHei",Arial,sans-serif !important;
+}
+
+.chipinput div div div[tabindex] svg {
+  height: 30px !important;
+  width: 30px !important;
+  margin: 1px 4px 0px -4px !important;
+  fill: #3c3940 !important;
+}

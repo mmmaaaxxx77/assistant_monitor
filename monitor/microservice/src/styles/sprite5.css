@@ -1,0 +1,22 @@
+.sprite5 {
+	background-image: url(../imgs/ver5_1x_min.png);
+}
+
+@media (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx) {
+	.sprite5 {
+		background-image: url(../imgs/ver5_2x_min.png);
+		background-size: 86px 106px;
+	}
+}
+
+.sprite-icon-close {
+	width: 20px;
+	height: 20px;
+	background-position: 0 0;
+}
+
+.sprite-icon-report {
+	width: 86px;
+	height: 86px;
+	background-position: 0 -20px;
+}

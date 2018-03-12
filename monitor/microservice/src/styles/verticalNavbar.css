@@ -1,0 +1,77 @@
+.verticalNavbar {
+  position: fixed;
+  z-index: 2;
+  height: 100%;
+  flex-shrink: 0;
+  padding-top: 60px;
+  width: 60px;
+  list-style-type: none;
+  background-color: #f1f1f1;
+  transition: all 0.3s;
+}
+.verticalNavbar.openMenu .tooltiptext{
+  display: none;
+}
+.verticalNavbar.openMenu {
+  width: 200px;
+  box-shadow: 5px 10px 60px #666;
+}
+.verticalNavbar .pageName {
+  display: none;
+  margin-left: 60px;
+  color: #333;
+  overflow: hidden;
+  text-align: left;
+}
+.verticalNavbar.openMenu .pageName {
+  display: block;
+}
+.verticalNavbar li {
+  position: relative;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+}
+.verticalNavbar li.yellowBkg {
+  background-color: #ffe828;
+}
+.verticalNavbar a {
+  display: block;
+  height: 100%;
+}
+.verticalNavbar span {
+  display: block;
+  text-decoration: none;
+  position: absolute;
+  top: 20px;
+  left: 18px;
+}
+.verticalNavbar li .tooltiptext {
+  position: absolute;
+  top: 12px;
+  left: 55px;
+  visibility: hidden;
+  opacity: 0;
+  width: 120px;
+  height: 35px;
+  line-height: 35px;
+  border-radius: 6px;
+  background-color: #444;
+  text-align: center;
+  color: #fff;
+  transition: opacity 0.5s;
+}
+.verticalNavbar li .tooltiptext:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+.verticalNavbar li:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
