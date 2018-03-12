@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     container_name: am-monitor
-    command: bash -c 'cd /home/node/microservice/monitor-ui & npm run build & cd /home/node/microservice && npm install && node server'
+    command: bash -c 'cd /home/node/microservice/monitor-ui & npm install & npm run build & cd /home/node/microservice && npm install && node server'
     networks:
       - am-net
 
