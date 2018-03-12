@@ -8,7 +8,7 @@ MAINTAINER johnny
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
-RUN mkdir /home/node
+# RUN mkdir /home/node
 
 WORKDIR /home/node
 ADD . /home/node
