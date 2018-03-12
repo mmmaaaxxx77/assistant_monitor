@@ -46,10 +46,10 @@ app.use(logger());
  extension: 'html'
  }));
  */
-app.use(views(path.join(__dirname, '..', 'monitor-ui/build'), {
+app.use(views(path.join(__dirname, '..', 'build'), {
     extension: 'html'
 }));
-app.use(serve(path.join(__dirname, '..', 'monitor-ui/build')));
+app.use(serve(path.join(__dirname, '..', 'build')));
 
 
 /**********************
