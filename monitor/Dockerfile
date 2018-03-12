@@ -14,4 +14,4 @@ WORKDIR /home/nodejs
 ADD . /home/nodejs
 EXPOSE 8000
 
-ENTRYPOINT /home/analysis/vtt/startup.sh ; /bin/bash
+ENTRYPOINT /home/nodejs/startup.sh ; /bin/bash
