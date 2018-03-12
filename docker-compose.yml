@@ -8,7 +8,7 @@ services:
     ports:
       - "8000:8000"
     container_name: am-monitor
-    command: cd microservice && npm install && node server
+    command: bash -c 'cd microservice && npm install && node server'
     networks:
       - am-net
 
