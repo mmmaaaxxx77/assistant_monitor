@@ -1,27 +1,15 @@
 version: "2"
 
 services:
-  keypo-monitor:
+  monitor:
     restart: always
-    image: redis:latest
-    hostname: keypo-monitor
+    build: ./monitor
+    hostname: am-monitor
     ports:
-      - "6379:6379"
-    container_name: keypo-dump-redis
+      - "8000:8000"
+    container_name: am-monitor
     networks:
-      - keypo-dump-net
-
-  keypo-dump:
-    build: ./keypo_dump
-    restart: always
-    container_name: keypo-dump
-    volumes:
-        - /etc/localtime:/etc/localtime:ro
-        - /home/johnny_tsai/efacstel:/home/root/.efacstel
-    networks:
-      - keypo-dump-net
-    #command: python -c 'from keypo.utils.operations import daily_update; daily_update(es_host=("172.20.2.38:9200","172.20.2.38:9201","172.20.2.39:9200","172.20.2.39:9201","172.20.2.40:9200","172.20.2.40:9201"), chunk_size=12000)'
-    command: python -c 'from keypo.utils.operations import dump; dump(start="2018-01-27",end="2018-01-28",es_host=("172.20.2.38:9200","172.20.2.38:9201","172.20.2.39:9200","172.20.2.39:9201","172.20.2.40:9200","172.20.2.40:9201"), chunk_size=12000))'
+      - am-net
 
 networks:
   am-net:
