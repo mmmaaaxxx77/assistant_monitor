@@ -14,4 +14,4 @@ WORKDIR /home/node
 ADD . /home/node
 EXPOSE 8000
 
-ENTRYPOINT /home/node/startup.sh ; /bin/bash
+# ENTRYPOINT /home/node/startup.sh ; /bin/bash
