@@ -13,4 +13,3 @@ services:
 
 networks:
   am-net:
-    external: true
