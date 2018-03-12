@@ -29,7 +29,7 @@ const styles = theme => ({
     },
 });
 
-const feedly_socket = openSocket('http://localhost:8000/feedly');
+const feedly_socket = openSocket("http://"+window.location.hostname + "/feedly");
 
 class App extends Component {
 
