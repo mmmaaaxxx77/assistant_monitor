@@ -39,7 +39,12 @@
 .right-grid {
     overflow: auto;
     overflow-x: hidden;
-    height: 90.8vh;
+    height: 100vh;
+}
+
+.left-grid {
+    background-color: #455A64;
+    height: 100vh;
 }
 
 .video-container {

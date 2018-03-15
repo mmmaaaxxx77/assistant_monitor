@@ -23,9 +23,10 @@ const styles = theme => ({
         height: '91.8vh',
     },
     paper: {
-        padding: theme.spacing.unit * 2,
+        padding: 0,
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        backgroundColor: '#000'
     },
 });
 
@@ -96,8 +97,8 @@ class App extends Component {
 
         return (
             <MuiThemeProvider theme={theme}>
-                <Grid container className={this.props.classes.root}>
-                    <Grid item xs={9} style={{paddingTop: '20px'}}>
+                <Grid container className={[this.props.classes.root].join(" ")}>
+                    <Grid item xs={9} className={['left-grid'].join(" ")}>
                         <Paper className={this.props.classes.paper}>
                             <div className="video-container">
                                 <iframe src="https://www.youtube.com/embed/QYT8WYdPJYo?rel=0&autoplay=1" frameBorder="0"
@@ -122,7 +123,7 @@ class App extends Component {
 
                     </Grid>
                 </Grid>
-<ButtonAppBar/>
+                {/*<ButtonAppBar/>*/}
             </MuiThemeProvider>
         );
     }
