@@ -12,7 +12,7 @@ import cv2
 # specific demo. If you have trouble installing it, try any of the other demos that don't require it instead.
 
 # Get a reference to webcam #0 (the default one)
-video_capture = cv2.VideoCapture(0)
+video_capture = cv2.VideoCapture("http://192.168.1.25:8080/?action=stream")
 
 # Load a sample picture and learn how to recognize it.
 # obama_image = face_recognition.load_image_file("obama.jpg")
