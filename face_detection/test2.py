@@ -1,5 +1,6 @@
 import face_recognition
 import cv2
+# from slack import slack_debug
 
 # This is a demo of running face recognition on live video from your webcam. It's a little more complicated than the
 # other example, but it includes some basic performance tweaks to make things run a lot faster:
@@ -37,6 +38,8 @@ face_encodings = []
 face_names = []
 process_this_frame = True
 
+unknow_list = []
+
 while True:
     # Grab a single frame of video
     ret, frame = video_capture.read()
@@ -50,14 +53,27 @@ while True:
     # Only process every other frame of video to save time
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
-        face_locations = face_recognition.face_locations(rgb_small_frame)
+        face_locations = face_recognition.face_locations(rgb_small_frame, number_of_times_to_upsample=2)
         face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
         face_names = []
+
         for face_encoding in face_encodings:
             # See if the face is a match for the known face(s)
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
             name = "Unknown"
+
+            # unknow list
+            if len(unknow_list) <= 0:
+                unknow_list.append(face_encoding)
+            un_matches = face_recognition.compare_faces(unknow_list, face_encoding, tolerance=0.3)
+
+            # print(un_matches)
+
+            if True not in un_matches:
+                unknow_list.append(face_encoding)
+            else:
+                name = "Unknown {}".format(un_matches.index(True))
 
             # If a match was found in known_face_encodings, just use the first one.
             if True in matches:
@@ -83,6 +99,11 @@ while True:
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
+
+        # slack
+        # if unknow_num != last_unknow_num:
+        #     # slack_debug("發現寶可夢 ``` {} ```".format(name))
+        #     print("發現寶可夢 {}".format(name))
 
     # Display the resulting image
     cv2.imshow('Video', frame)
