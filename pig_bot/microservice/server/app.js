@@ -135,8 +135,8 @@ const getGameTask = function(){
             json: true
         };
         rp(options2).then(function(body, err){
-           console.log(body);
-           const bot_data = handleGameTask(body);
+            console.log(body);
+            const bot_data = handleGameTask(body);
 
             const bot_options = {
                 uri: pig_data['bot_url'],
@@ -155,4 +155,4 @@ setInterval(function () {
     getGameTask();
     console.log('Time for tea!');
     console.log(new Date());
-}, 30 * 1000);
+}, 60 * 1000);

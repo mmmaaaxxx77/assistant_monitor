@@ -5,6 +5,10 @@ services:
     restart: always
     build: ./monitor
     hostname: am-monitor
+    environment:
+      - TZ=Asia/Taipei
+    volumes:
+      - /etc/localtime:/etc/localtime
     ports:
       - "8000:8000"
     container_name: am-monitor
@@ -16,6 +20,10 @@ services:
     restart: always
     build: ./pig_bot
     hostname: big-bot
+    environment:
+      - TZ=Asia/Taipei
+    volumes:
+      - /etc/localtime:/etc/localtime
     ports:
       - "8080:8000"
     container_name: big-bot
