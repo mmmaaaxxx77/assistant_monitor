@@ -100,6 +100,9 @@ const handleGameTask = function(data){
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
         const name = offers[key]['name'];
         const thumbnail = offers[key]['thumbnail'];
+        if(!thumbnail.includes("https")){
+            thumbnail.replace('http', 'https')
+        }
         const url = offers[key]['url'];
         const max_people = offers[key]['max_people'];
         const taken = offers[key]['taken'];
