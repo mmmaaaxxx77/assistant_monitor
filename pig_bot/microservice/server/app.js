@@ -101,7 +101,7 @@ const handleGameTask = function(data){
         if(!value){
             webCache.set(offers[key]['url'], offers[key]['end_time']*1000)
         }else{
-            if(value == offers[key]['end_time']){
+            if(value == offers[key]['end_time']*1000){
                 continue;
             }
         }
