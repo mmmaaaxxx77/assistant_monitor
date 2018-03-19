@@ -18,7 +18,7 @@ services:
     hostname: big-bot
     ports:
       - "8080:8000"
-    container_name: am-monitor
+    container_name: big-bot
     command: bash -c 'cd /home/node/microservice && npm install && npm run build && node server'
     networks:
       - am-net
