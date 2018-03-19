@@ -32,7 +32,7 @@ const IO = require('koa-socket');
 /**********************
  * cache setting
  ***********************/
-// const webCache = new NodeCache();
+const webCache = new NodeCache();
 
 /**********************
  * koa setting
@@ -97,9 +97,9 @@ const handleGameTask = function(data){
     const offers = data['offers'];
     const result = [];
     for(key in offers){
-        const value = NodeCache.get(offers[key]['url']);
+        const value = webCache.get(offers[key]['url']);
         if(!value){
-            NodeCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+            webCache.set(offers[key]['url'], offers[key]['end_time']*1000)
         }else{
             if(value == offers[key]['end_time']){
                 continue;
