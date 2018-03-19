@@ -12,10 +12,11 @@ import cv2
 # specific demo. If you have trouble installing it, try any of the other demos that don't require it instead.
 
 # Get a reference to webcam #0 (the default one)
-video_capture = cv2.VideoCapture("http://192.168.1.25:8080/?action=stream")
+#video_capture = cv2.VideoCapture("http://192.168.1.25:8080/?action=stream")
+video_capture = cv2.VideoCapture("rtsp://192.168.100.103:554/live/ch00_0")
 
 # Load a sample picture and learn how to recognize it.
-# obama_image = face_recognition.load_image_file("obama.jpg")
+# obama_image = face_recognition.load_image_file("img/A3.png")
 # obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 
 # Load a second sample picture and learn how to recognize it.
@@ -24,11 +25,11 @@ video_capture = cv2.VideoCapture("http://192.168.1.25:8080/?action=stream")
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
-    #obama_face_encoding,
+    # obama_face_encoding,
     #biden_face_encoding
 ]
 known_face_names = [
-    # "Barack Obama",
+    # "A2",
     # "Joe Biden"
 ]
 
@@ -39,6 +40,7 @@ face_names = []
 process_this_frame = True
 
 unknow_list = []
+live_list = []
 
 while True:
     # Grab a single frame of video
@@ -53,11 +55,12 @@ while True:
     # Only process every other frame of video to save time
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
-        face_locations = face_recognition.face_locations(rgb_small_frame, number_of_times_to_upsample=2)
+        face_locations = face_recognition.face_locations(rgb_small_frame, number_of_times_to_upsample=3)
         face_encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
         face_names = []
 
+        tmp_live_list = []
         for face_encoding in face_encodings:
             # See if the face is a match for the known face(s)
             matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
@@ -75,12 +78,19 @@ while True:
             else:
                 name = "Unknown {}".format(un_matches.index(True))
 
+                if name not in live_list:
+                    print("發現寶可夢 {}".format(name))
+                tmp_live_list.append(name)
+
             # If a match was found in known_face_encodings, just use the first one.
             if True in matches:
                 first_match_index = matches.index(True)
                 name = known_face_names[first_match_index]
 
             face_names.append(name)
+
+        live_list = []
+        live_list += tmp_live_list
 
     process_this_frame = not process_this_frame
 
@@ -99,11 +109,6 @@ while True:
         cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255), cv2.FILLED)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
-
-        # slack
-        # if unknow_num != last_unknow_num:
-        #     # slack_debug("發現寶可夢 ``` {} ```".format(name))
-        #     print("發現寶可夢 {}".format(name))
 
     # Display the resulting image
     cv2.imshow('Video', frame)
