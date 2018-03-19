@@ -167,4 +167,4 @@ setInterval(function () {
     getGameTask();
     console.log('Time for tea!');
     console.log(new Date());
-}, 60 * 1000);
+}, 5 * 60 * 1000);
