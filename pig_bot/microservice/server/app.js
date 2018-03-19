@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const co = require('co');
-// const NodeCache = require("node-cache");
+const NodeCache = require("node-cache");
 const readConfig = require('read-config');
 const axios = require('axios');
 const md5 = require('blueimp-md5');
@@ -97,6 +97,15 @@ const handleGameTask = function(data){
     const offers = data['offers'];
     const result = [];
     for(key in offers){
+        const value = NodeCache.get(offers[key]['url']);
+        if(!value){
+            NodeCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+        }else{
+            if(value == offers[key]['end_time']){
+                continue;
+            }
+        }
+
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
         const name = offers[key]['name'];
         const thumbnail = offers[key]['thumbnail'];
@@ -111,7 +120,7 @@ const handleGameTask = function(data){
             'end_time': strDate,
             'thumbnail': thumbnail,
             'url': url,
-            'content': strDate + '結束,' + '目前人數' + taken + '/' + max_people
+            'content': strDate + '結束 \n' + '目前人數' + taken + '/' + max_people
         }
     }
     return result;
