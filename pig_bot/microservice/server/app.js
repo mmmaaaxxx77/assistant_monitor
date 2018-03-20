@@ -101,7 +101,7 @@ const handleGameTask = function(data){
         if(!value){
             webCache.set(offers[key]['url'], offers[key]['end_time']*1000)
 
-            const now_st = moment.utc().valueOf();
+            const now_st = moment().valueOf();
             if(now_st > offers[key]['end_time']*1000){
                 continue;
             }
@@ -154,7 +154,7 @@ const getGameTask = function(){
             json: true
         };
         rp(options2).then(function(body, err){
-            console.log(body);
+            //console.log(body);
             const bot_data = handleGameTask(body);
 
             const bot_options = {
@@ -173,7 +173,7 @@ const getGameTask = function(){
 setInterval(function () {
     getGameTask();
     console.log('Time for tea!');
-    console.log(new Date());
+    console.log(moment().format("YYYY/MM/DD HH:mm"));
 }, 5 * 60 * 1000);
 
 // init
