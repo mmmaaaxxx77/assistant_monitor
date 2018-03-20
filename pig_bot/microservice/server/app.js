@@ -100,6 +100,11 @@ const handleGameTask = function(data){
         const value = webCache.get(offers[key]['url']);
         if(!value){
             webCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+
+            const now_st = moment.utc().valueOf();
+            if(now_st > offers[key]['end_time']*1000){
+                continue;
+            }
         }else{
             if(value == offers[key]['end_time']*1000){
                 continue;
@@ -115,12 +120,14 @@ const handleGameTask = function(data){
         const url = offers[key]['url'];
         const max_people = offers[key]['max_people'];
         const taken = offers[key]['taken'];
+        const point = offers[key]['point'];
         result[result.length] = {
             'name': name,
             'end_time': strDate,
             'thumbnail': thumbnail,
             'url': url,
-            'content': strDate + '結束 \n' + '目前人數' + taken + '/' + max_people
+            'content': strDate + '結束 \n' + '目前人數' + taken + '/' + max_people,
+            'point': point
         }
     }
     return result;
@@ -168,3 +175,42 @@ setInterval(function () {
     console.log('Time for tea!');
     console.log(new Date());
 }, 5 * 60 * 1000);
+
+// init
+const initPigTask = function(){
+    const myJSONObject = pig_data['post_data'];
+
+    const options = {
+    	uri: 'http://ckclouds.com/api/login',
+        method: "POST",
+        json: true,
+        body: myJSONObject
+    };
+
+    rp(options).then(function(body, err){
+        const token = body['user']['token'];
+        const options2 = {
+            uri: 'http://ckclouds.com/api/task/offer?device=ios&limit=20&offset=0&sa=1',
+            qs: null,
+            headers: {
+                'Authorization': token
+            },
+            json: true
+        };
+        rp(options2).then(function(body, err){
+            const bot_data = handleGameTask(body);
+
+            const bot_options = {
+                uri: pig_data['bot_url'],
+                method: "POST",
+                json: true,
+                body: {'data': bot_data}
+            };
+            rp(bot_options).then(function(body, err){
+                console.log(body);
+            });
+        });
+    });
+};
+initPigTask();
+
