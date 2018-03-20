@@ -32,7 +32,8 @@ const IO = require('koa-socket');
 /**********************
  * cache setting
  ***********************/
-const webCache = new NodeCache();
+const gameTaskCache = new NodeCache();
+const voteTaskCache = new NodeCache();
 
 /**********************
  * koa setting
@@ -82,6 +83,11 @@ router.get('/', async function (ctx) {
     ctx.body = repo2;
 });
 
+router.get('/test', async function (ctx) {
+    getToken();
+    ctx.body = 'Hello World';
+});
+
 /**********************
  * router
  ***********************/
@@ -90,16 +96,15 @@ app.use(router.routes());
 module.exports = app;
 
 /**********************
- * schedule job
+ * game task schedule job
  ***********************/
-
 const handleGameTask = function(data){
     const offers = data['offers'];
     const result = [];
     for(key in offers){
-        const value = webCache.get(offers[key]['url']);
+        const value = gameTaskCache.get(offers[key]['url']);
         if(!value){
-            webCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+            gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000)
 
             const now_st = moment().valueOf();
             if(now_st > offers[key]['end_time']*1000){
@@ -127,13 +132,112 @@ const handleGameTask = function(data){
             'thumbnail': thumbnail,
             'url': url,
             'content': strDate + '結束 \n' + '目前人數' + taken + '/' + max_people,
-            'point': point
+            'point': point,
+            'type_name': '緊急任務'
         }
     }
     return result;
 };
 
-const getGameTask = function(){
+const getGameTask = function(token){
+    const options2 = {
+        uri: 'http://ckclouds.com/api/task/offer?device=ios&limit=20&offset=0&sa=1',
+        qs: null,
+        headers: {
+            'Authorization': token
+        },
+        json: true
+    };
+    rp(options2).then(function(body, err){
+        //console.log(body);
+        const bot_data = handleGameTask(body);
+
+        const bot_options = {
+            uri: pig_data['bot_url'],
+            method: "POST",
+            json: true,
+            body: {'data': bot_data}
+        };
+        rp(bot_options).then(function(body, err){
+            console.log(body);
+            console.log("getGameTask OK");
+        });
+    });
+};
+
+/**********************
+ * vote task schedule job
+ ***********************/
+const handleVoteTask = function(data){
+    const offers = data['items'];
+    const result = [];
+    for(key in offers){
+        const value = voteTaskCache.get(offers[key]['url']);
+        const limit_people = offers[key]['limit_people'];
+        const join_people = offers[key]['limit_people'];
+        if(!value){
+            voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+
+            const now_st = moment().valueOf();
+            if(now_st > offers[key]['end_time']*1000 || join_people >= limit_people){
+                continue;
+            }
+        }else{
+            if(value == offers[key]['end_time']*1000 || join_people >= limit_people){
+                continue;
+            }
+        }
+
+        const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
+        const name = offers[key]['title'];
+        const thumbnail = "";
+        const url = offers[key]['url'];
+        const max_people = offers[key]['limit_people'];
+        const taken = offers[key]['join_people'];
+        const point = offers[key]['point'];
+        result[result.length] = {
+            'name': name,
+            'end_time': strDate,
+            'thumbnail': thumbnail,
+            'url': url,
+            'content': strDate + '結束 \n' + '目前人數' + taken + '/' + max_people,
+            'point': point,
+            'type_name': '投票任務'
+        }
+    }
+    return result;
+};
+
+const getVoteTask = function(token){
+    const options2 = {
+        uri: 'http://ckclouds.com/api/task?limit=20&offset=0',
+        qs: null,
+        headers: {
+            'Authorization': token
+        },
+        json: true
+    };
+    rp(options2).then(function(body, err){
+        //console.log(body);
+        const bot_data = handleVoteTask(body);
+
+        const bot_options = {
+            uri: pig_data['bot_url'],
+            method: "POST",
+            json: true,
+            body: {'data': bot_data}
+        };
+        rp(bot_options).then(function(body, err){
+            console.log(body);
+            console.log("getVoteTask OK");
+        });
+    });
+};
+
+/**********************
+ * schedule job
+ ***********************/
+const getToken = function(){
     const myJSONObject = pig_data['post_data'];
 
     const options = {
@@ -145,33 +249,13 @@ const getGameTask = function(){
 
     rp(options).then(function(body, err){
         const token = body['user']['token'];
-        const options2 = {
-            uri: 'http://ckclouds.com/api/task/offer?device=ios&limit=20&offset=0&sa=1',
-            qs: null,
-            headers: {
-                'Authorization': token
-            },
-            json: true
-        };
-        rp(options2).then(function(body, err){
-            //console.log(body);
-            const bot_data = handleGameTask(body);
-
-            const bot_options = {
-                uri: pig_data['bot_url'],
-                method: "POST",
-                json: true,
-                body: {'data': bot_data}
-            };
-            rp(bot_options).then(function(body, err){
-                console.log(body);
-            });
-        });
+        getGameTask(token);
+        getVoteTask(token);
     });
 };
 
 setInterval(function () {
-    getGameTask();
+    getToken();
     console.log('Time for tea!');
     console.log(moment().format("YYYY/MM/DD HH:mm"));
 }, 5 * 60 * 1000);
