@@ -111,11 +111,11 @@ const handleGameTask = function(data){
             gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
 
             const now_st = moment().valueOf();
-            if(now_st > offers[key]['end_time']*1000){
+            if(now_st > offers[key]['end_time']*1000 || taken*1 >= max_people*1){
                 continue;
             }
         }else{
-            if(value == offers[key]['end_time']*1000 || taken >= max_people){
+            if(value == offers[key]['end_time']*1000 || taken*1 >= max_people*1){
                 continue;
             }
             gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
@@ -180,11 +180,11 @@ const handleVoteTask = function(data){
             voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
 
             const now_st = moment().valueOf();
-            if(now_st > offers[key]['end_time']*1000 || join_people >= limit_people){
+            if(now_st > offers[key]['end_time']*1000 || join_people*1 >= limit_people*1){
                 continue;
             }
         }else{
-            if(value == offers[key]['end_time']*1000 || join_people >= limit_people){
+            if(value == offers[key]['end_time']*1000 || join_people*1 >= limit_people*1){
                 continue;
             }
             voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
