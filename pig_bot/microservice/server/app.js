@@ -108,17 +108,29 @@ const handleGameTask = function(data){
         const taken = offers[key]['taken'];
         const point = offers[key]['point'];
         if(!value){
-            gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
+            gameTaskCache.set(offers[key]['url'], {
+                'last_time': offers[key]['end_time']*1000,
+                'full': taken*1 >= max_people*1 ? true:false
+            });
 
             const now_st = moment().valueOf();
             if(now_st > offers[key]['end_time']*1000 || taken*1 >= max_people*1){
                 continue;
             }
         }else{
-            if(value == offers[key]['end_time']*1000 || taken*1 >= max_people*1){
+            if(value['last_time'] == offers[key]['end_time']*1000 && taken*1 >= max_people*1){
                 continue;
             }
-            gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
+            let cfull = taken*1 >= max_people*1 ? true:false;
+            if(value['full']){
+                continue;
+            }else{
+                cfull = true;
+            }
+            gameTaskCache.set(offers[key]['url'], {
+                'last_time': offers[key]['end_time']*1000,
+                'full': cfull
+            });
         }
 
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
@@ -177,17 +189,29 @@ const handleVoteTask = function(data){
         const limit_people = offers[key]['limit_people'];
         const join_people = offers[key]['limit_people'];
         if(!value){
-            voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
+            voteTaskCache.set(offers[key]['url'], {
+                'last_time': offers[key]['end_time']*1000,
+                'full': join_people*1 >= limit_people*1 ? true:false
+            });
 
             const now_st = moment().valueOf();
             if(now_st > offers[key]['end_time']*1000 || join_people*1 >= limit_people*1){
                 continue;
             }
         }else{
-            if(value == offers[key]['end_time']*1000 || join_people*1 >= limit_people*1){
+            if(value == offers[key]['end_time']*1000 && join_people*1 >= limit_people*1){
                 continue;
             }
-            voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
+            let cfull = join_people*1 >= limit_people*1 ? true:false;
+            if(value['full']){
+                continue;
+            }else{
+                cfull = true;
+            }
+            voteTaskCache.set(offers[key]['url'], {
+                'last_time': offers[key]['end_time']*1000,
+                'full': cfull
+            });
         }
 
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
