@@ -103,17 +103,22 @@ const handleGameTask = function(data){
     const result = [];
     for(key in offers){
         const value = gameTaskCache.get(offers[key]['url']);
+        const url = offers[key]['url'];
+        const max_people = offers[key]['max_people'];
+        const taken = offers[key]['taken'];
+        const point = offers[key]['point'];
         if(!value){
-            gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+            gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
 
             const now_st = moment().valueOf();
             if(now_st > offers[key]['end_time']*1000){
                 continue;
             }
         }else{
-            if(value == offers[key]['end_time']*1000){
+            if(value == offers[key]['end_time']*1000 || taken >= max_people){
                 continue;
             }
+            gameTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
         }
 
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
@@ -122,10 +127,6 @@ const handleGameTask = function(data){
         if(!thumbnail.includes("https")){
             thumbnail.replace('http', 'https')
         }
-        const url = offers[key]['url'];
-        const max_people = offers[key]['max_people'];
-        const taken = offers[key]['taken'];
-        const point = offers[key]['point'];
         result[result.length] = {
             'name': name,
             'end_time': strDate,
@@ -176,7 +177,7 @@ const handleVoteTask = function(data){
         const limit_people = offers[key]['limit_people'];
         const join_people = offers[key]['limit_people'];
         if(!value){
-            voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000)
+            voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
 
             const now_st = moment().valueOf();
             if(now_st > offers[key]['end_time']*1000 || join_people >= limit_people){
@@ -186,6 +187,7 @@ const handleVoteTask = function(data){
             if(value == offers[key]['end_time']*1000 || join_people >= limit_people){
                 continue;
             }
+            voteTaskCache.set(offers[key]['url'], offers[key]['end_time']*1000);
         }
 
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
