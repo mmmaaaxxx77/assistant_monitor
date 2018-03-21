@@ -118,6 +118,10 @@ const handleGameTask = function(data){
                 continue;
             }
         }else{
+            if(value['last_time'] == offers[key]['end_time']*1000){
+                console.log(offers[key]);
+            }
+
             if(value['last_time'] == offers[key]['end_time']*1000 && taken*1 >= max_people*1){
                 continue;
             }
