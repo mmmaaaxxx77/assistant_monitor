@@ -110,7 +110,8 @@ const handleGameTask = function(data){
         if(!value){
             gameTaskCache.set(offers[key]['url'], {
                 'last_time': offers[key]['end_time']*1000,
-                'full': taken*1 >= max_people*1 ? true:false
+                'alert': false,
+                'last_alert': 0
             });
 
             const now_st = moment().valueOf();
@@ -122,19 +123,33 @@ const handleGameTask = function(data){
                 console.log(offers[key]);
             }
 
-            if(value['last_time'] == offers[key]['end_time']*1000 && taken*1 >= max_people*1){
-                continue;
-            }
             let cfull = taken*1 >= max_people*1 ? true:false;
-            if(value['full']){
+            const now_st = moment().valueOf();
+
+            if(value['last_time'] == offers[key]['end_time']*1000 && cfull){
+                gameTaskCache.set(offers[key]['url'], {
+                    'last_time': offers[key]['end_time']*1000,
+                    'alert': value['alert'],
+                    'last_alert': value['last_alert']
+                });
                 continue;
+            }else if(value['last_time'] == offers[key]['end_time']*1000 &&
+                value['alert'] &&
+                !cfull &&
+                now_st - value['last_alert'] > 1000*60*30){
+                gameTaskCache.set(offers[key]['url'], {
+                    'last_time': offers[key]['end_time']*1000,
+                    'alert': true,
+                    'last_alert': now_st
+                });
             }else{
-                cfull = true;
+                gameTaskCache.set(offers[key]['url'], {
+                    'last_time': offers[key]['end_time']*1000,
+                    'alert': true,
+                    'last_alert': now_st
+                });
             }
-            gameTaskCache.set(offers[key]['url'], {
-                'last_time': offers[key]['end_time']*1000,
-                'full': cfull
-            });
+
         }
 
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
@@ -192,10 +207,11 @@ const handleVoteTask = function(data){
         const value = voteTaskCache.get(offers[key]['url']);
         const limit_people = offers[key]['limit_people'];
         const join_people = offers[key]['limit_people'];
+        const now_st = moment().valueOf();
         if(!value){
             voteTaskCache.set(offers[key]['url'], {
                 'last_time': offers[key]['end_time']*1000,
-                'full': join_people*1 >= limit_people*1 ? true:false
+                'last_alert': 0
             });
 
             const now_st = moment().valueOf();
@@ -206,15 +222,12 @@ const handleVoteTask = function(data){
             if(value == offers[key]['end_time']*1000 && join_people*1 >= limit_people*1){
                 continue;
             }
-            let cfull = join_people*1 >= limit_people*1 ? true:false;
-            if(value['full']){
+            if(now_st-value['last_alert']<1000*60*30 && now_st-value['last_alert']!=0){
                 continue;
-            }else{
-                cfull = true;
             }
             voteTaskCache.set(offers[key]['url'], {
                 'last_time': offers[key]['end_time']*1000,
-                'full': cfull
+                'last_alert': now_st
             });
         }
 
