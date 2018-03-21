@@ -284,7 +284,7 @@ setInterval(function () {
     getToken();
     console.log('Time for tea!');
     console.log(moment().format("YYYY/MM/DD HH:mm"));
-}, 5 * 60 * 1000);
+}, 3 * 60 * 1000);
 
 // init
 const initPigTask = function(){
