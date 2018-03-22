@@ -134,14 +134,22 @@ const handleGameTask = function(data){
                 });
                 continue;
             }else if(value['last_time'] == offers[key]['end_time']*1000 &&
-                value['alert'] &&
                 !cfull &&
-                now_st - value['last_alert'] > 1000*60*30){
+                now_st - value['last_alert'] > 1000*60*30) {
                 gameTaskCache.set(offers[key]['url'], {
-                    'last_time': offers[key]['end_time']*1000,
+                    'last_time': offers[key]['end_time'] * 1000,
                     'alert': true,
                     'last_alert': now_st
                 });
+            }else if(value['last_time'] == offers[key]['end_time']*1000 &&
+                !cfull &&
+                now_st - value['last_alert'] < 1000*60*30){
+                gameTaskCache.set(offers[key]['url'], {
+                    'last_time': offers[key]['end_time']*1000,
+                    'alert': value['alert'],
+                    'last_alert': value['last_alert']
+                });
+                continue;
             }else{
                 gameTaskCache.set(offers[key]['url'], {
                     'last_time': offers[key]['end_time']*1000,
@@ -223,6 +231,9 @@ const handleVoteTask = function(data){
                 continue;
             }
             if(now_st-value['last_alert']<1000*60*30 && now_st-value['last_alert']!=0){
+                continue;
+            }
+            if(now_st-value['last_alert']<1000*60*30){
                 continue;
             }
             voteTaskCache.set(offers[key]['url'], {
