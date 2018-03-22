@@ -160,7 +160,14 @@ const handleGameTask = function(data){
                 });
             }else if(cfull) {
                 gameTaskCache.set(offers[key]['url'], {
-                    'last_time': offers[key]['end_time']*1000,
+                    'last_time': offers[key]['end_time'] * 1000,
+                    'alert': value['alert'],
+                    'last_alert': value['last_alert']
+                });
+                continue;
+            }else if(offers[key]['end_time']*1000 < now_st){
+                gameTaskCache.set(offers[key]['url'], {
+                    'last_time': offers[key]['end_time'] * 1000,
                     'alert': value['alert'],
                     'last_alert': value['last_alert']
                 });
