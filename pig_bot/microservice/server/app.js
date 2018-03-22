@@ -255,6 +255,9 @@ const handleVoteTask = function(data){
             if(now_st-value['last_alert']<1000*60*30){
                 continue;
             }
+            if(join_people*1 >= limit_people*1){
+                continue;
+            }
             voteTaskCache.set(offers[key]['url'], {
                 'last_time': offers[key]['end_time']*1000,
                 'last_alert': now_st
