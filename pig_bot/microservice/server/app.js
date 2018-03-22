@@ -158,6 +158,13 @@ const handleGameTask = function(data){
                     'alert': true,
                     'last_alert': now_st
                 });
+            }else if(cfull) {
+                gameTaskCache.set(offers[key]['url'], {
+                    'last_time': offers[key]['end_time']*1000,
+                    'alert': value['alert'],
+                    'last_alert': value['last_alert']
+                });
+                continue;
             }else{
                 gameTaskCache.set(offers[key]['url'], {
                     'last_time': offers[key]['end_time']*1000,
