@@ -180,6 +180,10 @@ const handleGameTask = function(data){
                 });
             }
 
+            if(moment().format("HH")*1 <=0 && moment().format("HH")*1 < 7){
+                continue
+            }
+
         }
 
         const strDate = moment(offers[key]['end_time']*1000).format("YYYY/MM/DD HH:mm");
@@ -265,6 +269,11 @@ const handleVoteTask = function(data){
             if(join_people*1 >= limit_people*1){
                 continue;
             }
+
+            if(moment().format("HH")*1 <=0 && moment().format("HH")*1 < 7){
+                continue
+            }
+
             voteTaskCache.set(offers[key]['url'], {
                 'last_time': offers[key]['end_time']*1000,
                 'last_alert': now_st
