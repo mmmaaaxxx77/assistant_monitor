@@ -141,7 +141,7 @@ const handleGameTask = function(data){
                 continue;
             }else if(value['last_time'] == offers[key]['end_time']*1000 &&
                 !cfull &&
-                now_st - value['last_alert'] < 1000*60*60){
+                now_st - value['last_alert'] < 1000*60*60*2){
                 console.log(now_st + "," + value['last_alert']);
                 gameTaskCache.set(offers[key]['url'], {
                     'last_time': offers[key]['end_time']*1000,
@@ -151,7 +151,7 @@ const handleGameTask = function(data){
                 continue;
             }else if(value['last_time'] == offers[key]['end_time']*1000 &&
                 !cfull &&
-                now_st - value['last_alert'] > 1000*60*60) {
+                now_st - value['last_alert'] > 1000*60*60*2) {
                 console.log(now_st + "," + value['last_alert']);
                 gameTaskCache.set(offers[key]['url'], {
                     'last_time': offers[key]['end_time'] * 1000,
