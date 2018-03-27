@@ -180,7 +180,7 @@ const handleGameTask = function(data){
                 });
             }
 
-            if(moment().format("HH")*1 <=0 && moment().format("HH")*1 < 7){
+            if(moment().format("HH")*1 >= 0 && moment().format("HH")*1 < 7){
                 continue
             }
 
@@ -270,7 +270,7 @@ const handleVoteTask = function(data){
                 continue;
             }
 
-            if(moment().format("HH")*1 <=0 && moment().format("HH")*1 < 7){
+            if(moment().format("HH")*1 >= 0 && moment().format("HH")*1 < 7){
                 continue
             }
 
